@@ -1,0 +1,68 @@
+
+<div class='container'>
+    <div class="card-body">
+        <h5 class="card-title">{{titulo}}</h5>
+        <form #formulario="ngForm">
+            <div class="form-group row">
+                <label for="codigo" class="col-form-label col-sm-2">Codigo</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" name="codigo" [(ngModel)]="producto.codigo" required>
+                    <span class="text-danger" *ngIf="!producto.codigo">Este campo es obligatorio</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nombres" class="col-form-label col-sm-2">Nombre</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="nombre" [(ngModel)]="producto.nombre" required>
+                    <span class="text-danger" *ngIf="!producto.nombre">Este campo es obligatorio</span>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="marca" class="col-form-label col-sm-2">Marca</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="marca" [(ngModel)]="producto.marca" required>
+                    <span class="text-danger" *ngIf="!producto.marca">Este campo es obligatorio</span>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="categoria" class="col-form-label col-sm-2">Categoria</label>
+                <div class="col-sm-6">
+                  <select class="form-control" name="categoria" [(ngModel)]="producto.id_categoria">
+                    <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+                  </select>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-success" role="button" (click)="create()" *ngIf="!producto.id else elseBlock" [disabled]="formulario.invalid">Registrar</button>
+
+            <ng-template #elseBlock>
+                <button type="submit" class="btn btn-success" role="button" (click)="update()" [disabled]="formulario.invalid">Update</button>
+        
+            </ng-template>
+            
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <h1>{{tituloDet}}</h1>
+    
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Valor</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let detalle of detalles">
+            <th scope="row">{{detalle.id}}</th>
+            <td>{{detalle.nombre}}</td>
+            <td>{{detalle.valor}}</td>
+          </tr>
+        </tbody>
+    </table>
+    </div>

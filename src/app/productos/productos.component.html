@@ -1,0 +1,32 @@
+<div class="container">
+<h1>{{titulo}}</h1>
+
+<button class= 'btn btn-info' type="button" [routerLink]="['/productos/form']"> Nuevo Producto</button>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
+
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let producto of productos">
+        <th scope="row">{{producto.id}}</th>
+        <td>{{producto.codigo}}</td>
+        <td>{{producto.nombre}}</td>
+        <td>{{producto.marca}}</td>
+        <td>{{producto.categoria}}</td>
+        <td><button type="button" name="button" class="btn btn-primary" [routerLink]="['/productos/form', producto.id]">Editar</button></td>
+        <td><button class="btn btn-danger" (click)="delete(producto)">Eliminar</button></td>
+    </tr>
+    </tbody>
+</table>
+</div>
